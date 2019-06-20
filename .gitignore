@@ -17,7 +17,7 @@ build/
 !.vscode/tasks.js
 
 # JetBrains IDEs
-.idea/
+#.idea/
 
 # Optional npm cache directory
 .npm
