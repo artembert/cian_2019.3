@@ -1,33 +1,22 @@
-/**
- * Some predefined delays (in milliseconds).
- */
-export enum Delays {
-  Short = 500,
-  Medium = 2000,
-  Long = 5000,
+const requestPromise = require('request-promise');
+const requestOptions = require('./configs/requestOption').requestOptions;
+
+init();
+
+function init(): void {
+  sendRequest();
 }
 
-/**
- * Returns a Promise<string> that resolves after given time.
- *
- * @param {string} name - A name.
- * @param {number=} [delay=Delays.Medium] - Number of milliseconds to delay resolution of the Promise.
- * @returns {Promise<string>}
- */
-function delayedHello(
-  name: string,
-  delay: number = Delays.Medium,
-): Promise<string> {
-  return new Promise((resolve: (value?: string) => void) =>
-    setTimeout(() => resolve(`Hello, ${name}`), delay),
-  );
-}
-
-// Below are examples of using TSLint errors suppression
-// Here it is suppressing missing type definitions for greeter function
-
-// tslint:disable-next-line typedef
-export async function greeter(name) {
-  // tslint:disable-next-line no-unsafe-any no-return-await
-  return await delayedHello(name, Delays.Long);
+function sendRequest(): string | boolean {
+  return requestPromise(requestOptions)
+    .then((response: Response) => {
+      console.log('request resolve');
+      console.log(`
+      offerCount: ${response.data.offerCount}
+      offersSerialized: ${response.data.offersSerialized.length}
+      `);
+    })
+    .catch(() => {
+      console.log('request rejected');
+    });
 }
