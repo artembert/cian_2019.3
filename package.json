@@ -31,7 +31,6 @@
   "dependencies": {
     "@types/request-promise": "^4.1.44",
     "@types/superagent": "^4.1.1",
-    "request-promise": "^4.2.4",
     "superagent": "^5.1.0",
     "tslib": "~1.9.3"
   }
