@@ -1,4 +1,4 @@
-exports.requestOptions = {
+const requestOptions = {
   uri: 'https://spb.cian.ru/cian-api/site/v1/search-offers/',
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
@@ -15,3 +15,5 @@ exports.requestOptions = {
     for_day: { type: 'term', value: '!1' },
   },
 };
+
+export default requestOptions;

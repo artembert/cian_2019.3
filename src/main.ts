@@ -1,22 +1,23 @@
-const requestPromise = require('request-promise');
-const requestOptions = require('./configs/requestOption').requestOptions;
+import requestOptions from './configs/requestOptions';
+import * as superagent from 'superagent';
 
 init();
 
 function init(): void {
-  sendRequest();
+  sendAsyncRequest();
 }
 
-function sendRequest(): string | boolean {
-  return requestPromise(requestOptions)
-    .then((response: Response) => {
-      console.log('request resolve');
-      console.log(`
-      offerCount: ${response.data.offerCount}
-      offersSerialized: ${response.data.offersSerialized.length}
-      `);
-    })
-    .catch(() => {
-      console.log('request rejected');
+function sendAsyncRequest(): void {
+  superagent
+    .post(requestOptions.uri)
+    .send(requestOptions.body)
+    .set(
+      Object.keys(requestOptions.headers)[0],
+      requestOptions.headers['Content-Type'],
+    )
+    .end((err: superagent.ResponseError,
+          res: superagent.Response) => {
+      console.log('err: ', err);
+      console.log('res: ', res);
     });
 }
