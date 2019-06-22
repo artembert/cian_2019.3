@@ -4,23 +4,8 @@ import * as superagent from 'superagent';
 init();
 
 function init(): void {
-  sendRequest();
   console.log("get Async Request");
   getAsyncRequest();
-}
-
-function sendRequest(): void {
-  superagent
-    .post(requestOptions.uri)
-    .send(requestOptions.body)
-    .set(
-      Object.keys(requestOptions.headers)[0],
-      requestOptions.headers['Content-Type'],
-    )
-    .end((err: superagent.ResponseError, res: superagent.Response) => {
-      console.log('err: ', err);
-      console.log('res: ', res);
-    });
 }
 
 async function getAsyncRequest() {
