@@ -2,15 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="700c9c08-0530-4014-981e-f9598ac0f9a1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/artem.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/CustomConsole.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/types/CianResponseData.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/types/CianRequest.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/console.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/configs/requestOptions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/configs/requestOptions.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/cianResponse.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/CianResponse.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -101,7 +96,9 @@
       <updated>1561056555397</updated>
       <workItem from="1561056556776" duration="1360000" />
       <workItem from="1561058733924" duration="12335000" />
-      <workItem from="1561202832885" duration="11351000" />
+      <workItem from="1561202832885" duration="11548000" />
+      <workItem from="1561285706982" duration="246000" />
+      <workItem from="1561286073397" duration="2563000" />
     </task>
     <task id="LOCAL-00001" summary="remove .idea/ from .gitignore">
       <created>1561056660217</created>
@@ -145,7 +142,14 @@
       <option name="project" value="LOCAL" />
       <updated>1561233475468</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="add color logs, start to describe CianResponse types">
+      <created>1561238582466</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1561238582466</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

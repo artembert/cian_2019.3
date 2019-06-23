@@ -1,4 +1,4 @@
-import requestOptions from './configs/requestOptions';
+import {requestOptions, rentOption, saleOptions} from './configs/requestOptions';
 import * as superagent from 'superagent';
 import CustomConsole from './CustomConsole';
 import { CianResponseData } from 'CianResponseData';
