@@ -3,7 +3,7 @@ const chalk = require('chalk');
 export default class CustomConsole {
   public constructor() {}
 
-  public static SERIALIZED_DATA(serializedData: string): void {
+  public static SERIALIZED_DATA(serializedData: string | [] | number): void {
     console.log(serializedData);
   }
 

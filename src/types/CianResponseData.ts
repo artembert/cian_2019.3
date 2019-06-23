@@ -15,7 +15,7 @@ type CianResponseData = {
   suggestionsOfferIds: [],
   suggestOffersSerializedList: [],
   qsToUris: Object,
-  offersSerialized: [],
+  offersSerialized: any[],
   fullUrl: string,
   topHitsLinks: []
 }

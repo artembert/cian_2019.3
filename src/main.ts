@@ -11,11 +11,13 @@ init();
 function init(): void {
   CustomConsole.HELLO_MESSAGE();
   getAsyncRequest()
-    .then(() => CustomConsole.DATA_LOADED());
+    .then(() => CustomConsole.DATA_LOADED())
+    .then(() =>
+      CustomConsole.SERIALIZED_DATA(responseData.offersSerialized.length));
 }
 
 async function getAsyncRequest() {
-  console.log("get Async Request");
+  console.log("getAsyncRequest()");
   try {
     const result: CianResponse = await superagent
       .post(requestOptions.uri)
@@ -25,7 +27,7 @@ async function getAsyncRequest() {
         requestOptions.headers['Content-Type'],
       );
     responseData = result.body.data;
-    console.log(responseData);
+    // console.log(responseData);
   } catch (err) {
     console.error('err: ', err);
   }
