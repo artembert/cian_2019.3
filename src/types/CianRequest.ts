@@ -25,12 +25,12 @@ export interface Body {
 
 export interface Region {
   type: string;
-  value: [number];
+  value: number[];
 }
 
 export interface Room {
   type: string;
-  value: [number];
+  value: number[];
 }
 
 export interface Currency {

@@ -7,7 +7,7 @@ export let requestOptions: CianRequest = {
   json: true,
   body: {
     region: { type: 'terms', value: [2] },
-    room: { type: 'terms', value: [9] },
+    room: { type: 'terms', value: [] },
     engine_version: { type: 'term', value: 2 },
     currency: { type: 'term', value: 2 },
     page: { type: 'term', value: 1 },
@@ -15,7 +15,6 @@ export let requestOptions: CianRequest = {
     floorn: { type: 'range', value: { gte: 1, lte: 6 } },
     _type: 'flatrent',
     for_day: { type: 'term', value: '!1' },
-    rent: {'_type': 'flatrent', for_day: { type: 'term', value: "!1" } }
   },
 };
 

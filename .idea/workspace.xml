@@ -2,17 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="700c9c08-0530-4014-981e-f9598ac0f9a1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/askForRequestOptions.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/types/AdType.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/types/RoomCount.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/configs/roomCountCode.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/askForRequestOptions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/askForRequestOptions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/configs/requestOptions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/configs/requestOptions.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/types/CianRequest.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/CianRequest.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/CianResponse.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/CianResponse.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/CianResponseData.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tslint.json" beforeDir="false" afterPath="$PROJECT_DIR$/tslint.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -106,6 +101,8 @@
       <workItem from="1561202832885" duration="11548000" />
       <workItem from="1561285706982" duration="246000" />
       <workItem from="1561286073397" duration="13783000" />
+      <workItem from="1561353602958" duration="132000" />
+      <workItem from="1561405465493" duration="3180000" />
     </task>
     <task id="LOCAL-00001" summary="remove .idea/ from .gitignore">
       <created>1561056660217</created>
@@ -170,7 +167,14 @@
       <option name="project" value="LOCAL" />
       <updated>1561290556317</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="extend request by adType">
+      <created>1561353715286</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1561353715286</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -205,6 +209,7 @@
     <MESSAGE value="Describe types for cianRequest" />
     <MESSAGE value="Update function CustomConsole.SERIALIZED_DATA" />
     <MESSAGE value="Update function CustomConsole.SERIALIZED_DATA()" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update function CustomConsole.SERIALIZED_DATA()" />
+    <MESSAGE value="extend request by adType" />
+    <option name="LAST_COMMIT_MESSAGE" value="extend request by adType" />
   </component>
 </project>
