@@ -1,3 +1,6 @@
+import { AdType } from 'AdType';
+import { RoomCount } from 'RoomCount';
+
 export interface CianRequest {
   uri: string;
   method: string;
@@ -60,4 +63,9 @@ export interface Rent {
 export interface Sale {
   _type: 'flatsale';
   building_status: { type: 'term'; value: 1 };
+}
+
+export interface TypeAndRoomChoice {
+  adType: AdType,
+  roomCount: RoomCount
 }

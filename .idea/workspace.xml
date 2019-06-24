@@ -2,10 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="700c9c08-0530-4014-981e-f9598ac0f9a1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/askForRequestOptions.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/types/AdType.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/types/RoomCount.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CustomConsole.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/CustomConsole.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/CianResponseData.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/CianResponseData.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/CianRequest.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/CianRequest.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/CianResponse.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/CianResponse.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/CianResponseData.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tslint.json" beforeDir="false" afterPath="$PROJECT_DIR$/tslint.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -55,7 +62,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="prettierjs.PrettierConfiguration.Package" value="C:\Artem files\projects\personal\cian\cian_2019.3\node_modules\prettier" />
-    <property name="settings.editor.selected.configurable" value="settings.typescriptcompiler" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="ts.external.directory.path" value="C:\Artem files\projects\personal\cian\cian_2019.3\node_modules\typescript\lib" />
   </component>
   <component name="RunDashboard">
@@ -98,7 +105,7 @@
       <workItem from="1561058733924" duration="12335000" />
       <workItem from="1561202832885" duration="11548000" />
       <workItem from="1561285706982" duration="246000" />
-      <workItem from="1561286073397" duration="4394000" />
+      <workItem from="1561286073397" duration="13783000" />
     </task>
     <task id="LOCAL-00001" summary="remove .idea/ from .gitignore">
       <created>1561056660217</created>
@@ -156,7 +163,14 @@
       <option name="project" value="LOCAL" />
       <updated>1561288713745</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Update function CustomConsole.SERIALIZED_DATA()">
+      <created>1561290556317</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1561290556317</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -189,6 +203,8 @@
     <MESSAGE value="remove unused packages" />
     <MESSAGE value="add color logs, start to describe CianResponse types" />
     <MESSAGE value="Describe types for cianRequest" />
-    <option name="LAST_COMMIT_MESSAGE" value="Describe types for cianRequest" />
+    <MESSAGE value="Update function CustomConsole.SERIALIZED_DATA" />
+    <MESSAGE value="Update function CustomConsole.SERIALIZED_DATA()" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update function CustomConsole.SERIALIZED_DATA()" />
   </component>
 </project>
