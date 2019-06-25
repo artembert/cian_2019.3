@@ -19,7 +19,7 @@ async function init(): Promise<void> {
   const responseData: CianResponseData
     = await getAsyncRequest(extendedRequestOptions);
   CustomConsole.DATA_LOADED();
-  CustomConsole.SERIALIZED_DATA(responseData.offersSerialized.length);
+  CustomConsole.ITERATE_OVER_DATA(responseData);
 }
 
 async function getAsyncRequest(

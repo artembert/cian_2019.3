@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="700c9c08-0530-4014-981e-f9598ac0f9a1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/configs/roomCountCode.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/askForRequestOptions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/askForRequestOptions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CustomConsole.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/CustomConsole.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/configs/requestOptions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/configs/requestOptions.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/CianRequest.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/CianRequest.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

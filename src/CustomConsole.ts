@@ -1,3 +1,5 @@
+import { CianResponseData } from 'CianResponse';
+
 const chalk = require('chalk');
 
 export default class CustomConsole {
@@ -13,5 +15,13 @@ export default class CustomConsole {
 
   public static HELLO_MESSAGE(): void {
     console.log(chalk.gray.bgWhite.bold(' HELLO '));
+  }
+
+  public static ITERATE_OVER_DATA(data: CianResponseData): void {
+    Object.entries(data).forEach(([key, value]: [string, any]) => {
+      if (key !== 'offersSerialized') {
+        console.log(`${chalk.blue.bold(key)}: ${value}`)
+      }
+    })
   }
 }
