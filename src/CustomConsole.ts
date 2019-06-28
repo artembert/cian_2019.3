@@ -28,4 +28,8 @@ export default class CustomConsole {
   public static DATA_SAVED(savedCount: number, totalCount: number): void {
     console.log(chalk.green.bold(`RESULT: [${savedCount}] of [${totalCount}]`));
   }
+
+  public static SYSTEM_INFORMATION(message: string): void {
+    console.log(chalk.bgWhite.black(message));
+  }
 }
