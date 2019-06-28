@@ -24,7 +24,7 @@ async function init(): Promise<void> {
   // CustomConsole.ITERATE_OVER_DATA(responseData);
   // CustomConsole.SERIALIZED_DATA(responseData.offersSerialized[0]);
   const parsedOfferList: Offer[]
-    = await routeResponseData(responseData, extendedRequestOptions);
+    = await parseSerializedData(responseData, extendedRequestOptions);
   saveFile(parsedOfferList, '../data/parsedOfferList.json');
 }
 
@@ -57,7 +57,7 @@ function extendRequestOptions(options: TypeAndRoomChoice,
   return requestOptions;
 }
 
-async function routeResponseData(responseData: CianResponseData,
+async function parseSerializedData(responseData: CianResponseData,
                                  extendedRequestOptions: CianRequest):
   Promise<Offer[]> {
   if (!responseData) {
