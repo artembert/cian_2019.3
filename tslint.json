@@ -24,6 +24,7 @@
       "property-declaration",
       "member-variable-declaration",
       "call-signature"
-    ]
+    ],
+    "non-literal-fs-path": false
   }
 }
