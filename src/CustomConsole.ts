@@ -24,4 +24,8 @@ export default class CustomConsole {
       }
     })
   }
+
+  public static DATA_SAVED(savedCount: number, totalCount: number): void {
+    console.log(chalk.green.bold(`RESULT: [${savedCount}] of [${totalCount}]`));
+  }
 }

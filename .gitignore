@@ -18,6 +18,7 @@ build/
 
 # JetBrains IDEs
 #.idea/
+.idea/workspace.xml
 
 # Optional npm cache directory
 .npm

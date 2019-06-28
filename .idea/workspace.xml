@@ -2,10 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="700c9c08-0530-4014-981e-f9598ac0f9a1" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CustomConsole.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/CustomConsole.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/configs/requestOptions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/configs/requestOptions.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/saveFile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/saveFile.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -47,16 +50,18 @@
     <property name="ToolWindowRun.ShowToolbar" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.karma.karma_node_package_dir" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../cian_2019.1" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="prettierjs.PrettierConfiguration.Package" value="C:\Artem files\projects\personal\cian\cian_2019.3\node_modules\prettier" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
-    <property name="ts.external.directory.path" value="C:\Artem files\projects\personal\cian\cian_2019.3\node_modules\typescript\lib" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="prettierjs.PrettierConfiguration.NodeInterpreter" value="project" />
+    <property name="prettierjs.PrettierConfiguration.Package" value="C:\aberesnev\education\cian_2019.3\node_modules\prettier" />
+    <property name="settings.editor.selected.configurable" value="settings.javascript.prettier" />
+    <property name="ts.external.directory.path" value="C:\aberesnev\education\cian_2019.3\node_modules\typescript\lib" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -90,6 +95,7 @@
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="700c9c08-0530-4014-981e-f9598ac0f9a1" name="Default Changelist" comment="" />
+      <changelist id="" name="Add storeData() function" comment="" />
       <created>1561056555397</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -101,6 +107,8 @@
       <workItem from="1561286073397" duration="13783000" />
       <workItem from="1561353602958" duration="132000" />
       <workItem from="1561405465493" duration="3180000" />
+      <workItem from="1561545535586" duration="1620000" />
+      <workItem from="1561721609410" duration="6529000" />
     </task>
     <task id="LOCAL-00001" summary="remove .idea/ from .gitignore">
       <created>1561056660217</created>
@@ -172,7 +180,35 @@
       <option name="project" value="LOCAL" />
       <updated>1561353715286</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Add CustomConsole.ITERATE_OVER_DATA() function">
+      <created>1561466778079</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1561466778079</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Add type to Offer">
+      <created>1561724484247</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1561724484247</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Add storeData() function">
+      <created>1561724516541</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1561724516541</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Add storeData() function">
+      <created>1561724578060</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1561724578060</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -208,6 +244,9 @@
     <MESSAGE value="Update function CustomConsole.SERIALIZED_DATA" />
     <MESSAGE value="Update function CustomConsole.SERIALIZED_DATA()" />
     <MESSAGE value="extend request by adType" />
-    <option name="LAST_COMMIT_MESSAGE" value="extend request by adType" />
+    <MESSAGE value="Add CustomConsole.ITERATE_OVER_DATA() function" />
+    <MESSAGE value="Add type to Offer" />
+    <MESSAGE value="Add storeData() function" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add storeData() function" />
   </component>
 </project>
