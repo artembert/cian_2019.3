@@ -11,8 +11,8 @@ export let requestOptions: CianRequest = {
     engine_version: { type: 'term', value: 2 },
     currency: { type: 'term', value: 2 },
     page: { type: 'term', value: 1 },
-    floor: { type: 'range', value: { gte: 1, lte: 1 } },
-    floorn: { type: 'range', value: { gte: 1, lte: 6 } }, // floor number in a house
+    floor: { type: 'range', value: { gte: 1, lte: 50 } },
+    floorn: { type: 'range', value: { gte: 1, lte: 50 } }, // floor number in a house
     _type: 'flatrent',
     for_day: { type: 'term', value: '!1' },
   },
