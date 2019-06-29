@@ -2,8 +2,10 @@ import { CianRequest, TypeAndRoomChoice } from 'CianRequest';
 import { rentOption, saleOptions } from './configs/requestOptions';
 import { roomCountCode } from './configs/roomCountCode';
 
-export function extendRequestOptions(options: TypeAndRoomChoice,
-                              requestOptions: CianRequest): CianRequest {
+export function extendRequestOptions(
+  options: TypeAndRoomChoice,
+  requestOptions: CianRequest,
+): CianRequest {
   console.log('extendRequestOptions()');
   if (options.adType === 'rent') {
     Object.assign(requestOptions, rentOption);

@@ -20,9 +20,9 @@ export default class CustomConsole {
   public static ITERATE_OVER_DATA(data: CianResponseData): void {
     Object.entries(data).forEach(([key, value]: [string, any]) => {
       if (key !== 'offersSerialized') {
-        console.log(`${chalk.blue.bold(key)}: ${value}`)
+        console.log(`${chalk.blue.bold(key)}: ${value}`);
       }
-    })
+    });
   }
 
   public static DATA_SAVED(savedCount: number, totalCount: number): void {
