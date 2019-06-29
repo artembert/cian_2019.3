@@ -1,10 +1,9 @@
-import { requestOptions, rentOption, saleOptions } from './configs/requestOptions';
+import { requestOptions } from './configs/requestOptions';
 import { askForRequestOptions } from './askForRequestOptions';
 import * as superagent from 'superagent';
 import CustomConsole from './CustomConsole';
 import { CianResponse, CianResponseData } from 'CianResponse';
 import { CianRequest, TypeAndRoomChoice } from 'CianRequest';
-import { roomCountCode } from './configs/roomCountCode';
 import { saveFile } from './saveFile';
 import { Offer } from 'Offer';
 import { SimplifyOffer } from 'SimplifyOffer';
@@ -25,7 +24,12 @@ async function init(): Promise<void> {
     = await getResponse(extendedRequestOptions);
   const parsedOfferList: SimplifyOffer[]
     = await parseSerializedData(responseData, extendedRequestOptions);
-  saveFile(parsedOfferList, '../data/parsedOfferList.json');
+  const isFileSaved
+    = await saveFile(parsedOfferList, '../data/parsedOfferList.json')
+    .catch((err: NodeJS.ErrnoException | null) => console.error(err));
+  if (!isFileSaved) {
+    throw new Error('file save FAILED')
+  }
 }
 
 async function getResponse(
