@@ -30,6 +30,6 @@ export default class CustomConsole {
   }
 
   public static SYSTEM_INFORMATION(message: string): void {
-    console.log(chalk.bgWhite.black(message));
+    console.log(chalk.bgCyan.black(message));
   }
 }
