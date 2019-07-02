@@ -10,7 +10,6 @@ import { getResponse } from './getResponse';
 import { parseSerializedData } from './parseSerializedData';
 import { GlobalState } from 'GlobalState';
 
-
 const globalState: GlobalState = {
   proceedOffers: 0,
   respondedOffers: 0,
@@ -20,29 +19,48 @@ init();
 
 async function init(): Promise<void> {
   CustomConsole.HELLO_MESSAGE();
-  const userInput: TypeAndRoomChoice
-    = await askForRequestOptions();
 
-  const extendedRequestOptions: CianRequest
-    = extendRequestOptions(userInput, requestOptions);
+  const userInput: TypeAndRoomChoice = await askForRequestOptions();
 
-  const responseData: CianResponseData
-    = await getResponse(extendedRequestOptions);
+  const extendedRequestOptions: CianRequest = extendRequestOptions(userInput, requestOptions);
 
-  const parsedOfferList: SimplifyOffer[]
-    = await parseSerializedData(responseData, extendedRequestOptions, globalState);
+  const responseData: CianResponseData = await getResponse(extendedRequestOptions);
 
-  const isFileSaved
-    = await saveFile(parsedOfferList, '../data/parsedOfferList.json')
-    .catch((err: NodeJS.ErrnoException | null) => console.error(err));
+  globalState.respondedOffers = responseData.offerCount;
 
-  if (!isFileSaved) {
-    throw new Error('file save FAILED')
-  }
+  getParsedDataPageByPage(responseData, globalState, extendedRequestOptions);
 }
 
 
 function nextPage(extendedRequestOptions: CianRequest): CianRequest {
   extendedRequestOptions.body.page.value++;
   return extendedRequestOptions;
+}
+
+async function getParsedDataPageByPage(
+  responseData: CianResponseData,
+  globalState: GlobalState,
+  extendedRequestOptions: CianRequest,
+): Promise<void> {
+  while (responseData && globalState.proceedOffers <= 30) {
+
+    responseData = await getResponse(extendedRequestOptions);
+
+    const parsedOfferList: SimplifyOffer[] = await parseSerializedData(
+      responseData,
+      extendedRequestOptions,
+      globalState,
+    );
+
+    const isFileSaved = await saveFile(
+      parsedOfferList,
+      `../data/parsedOfferList-${requestOptions.body.page.value}.json`,
+    ).catch((err: NodeJS.ErrnoException | null) => console.error(err));
+
+    if (!isFileSaved) {
+      throw new Error('file save FAILED');
+    }
+
+    extendedRequestOptions = nextPage(extendedRequestOptions);
+  }
 }
