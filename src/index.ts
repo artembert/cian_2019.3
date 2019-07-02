@@ -3,7 +3,7 @@ import { askForRequestOptions } from './askForRequestOptions';
 import CustomConsole from './CustomConsole';
 import { CianResponseData } from 'CianResponse';
 import { CianRequest, TypeAndRoomChoice } from 'CianRequest';
-import { saveFile } from './saveFile';
+import { appendOrSaveFile, saveFile } from './saveFile';
 import { SimplifyOffer } from 'SimplifyOffer';
 import { extendRequestOptions } from './extendRequestOptions';
 import { getResponse } from './getResponse';
@@ -37,6 +37,7 @@ async function getParsedDataPageByPage(
   globalState: GlobalState,
   extendedRequestOptions: CianRequest,
 ): Promise<void> {
+  const startDate: string = CustomDate.TIME_STAMP();
   while (responseData && globalState.proceedOffers <= 90) {
     responseData = await getResponse(extendedRequestOptions);
 
@@ -47,8 +48,8 @@ async function getParsedDataPageByPage(
     );
 
     const isFileSaved = await saveFile(
-      parsedOfferList,
       `../data/parsedOfferList-${CustomDate.TIME_STAMP()}.json`,
+      parsedOfferList,
     ).catch((err: NodeJS.ErrnoException | null) => console.error(err));
 
     if (!isFileSaved) {
