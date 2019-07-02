@@ -9,6 +9,7 @@ import { extendRequestOptions } from './extendRequestOptions';
 import { getResponse } from './getResponse';
 import { parseSerializedData } from './parseSerializedData';
 import { GlobalState } from 'GlobalState';
+import { CustomDate } from './CustomDate';
 
 const globalState: GlobalState = {
   proceedOffers: 0,
@@ -19,18 +20,12 @@ init();
 
 async function init(): Promise<void> {
   CustomConsole.HELLO_MESSAGE();
-
   const userInput: TypeAndRoomChoice = await askForRequestOptions();
-
   const extendedRequestOptions: CianRequest = extendRequestOptions(userInput, requestOptions);
-
   const responseData: CianResponseData = await getResponse(extendedRequestOptions);
-
   globalState.respondedOffers = responseData.offerCount;
-
   getParsedDataPageByPage(responseData, globalState, extendedRequestOptions);
 }
-
 
 function nextPage(extendedRequestOptions: CianRequest): CianRequest {
   extendedRequestOptions.body.page.value++;
@@ -42,8 +37,7 @@ async function getParsedDataPageByPage(
   globalState: GlobalState,
   extendedRequestOptions: CianRequest,
 ): Promise<void> {
-  while (responseData && globalState.proceedOffers <= 30) {
-
+  while (responseData && globalState.proceedOffers <= 90) {
     responseData = await getResponse(extendedRequestOptions);
 
     const parsedOfferList: SimplifyOffer[] = await parseSerializedData(
@@ -54,7 +48,7 @@ async function getParsedDataPageByPage(
 
     const isFileSaved = await saveFile(
       parsedOfferList,
-      `../data/parsedOfferList-${requestOptions.body.page.value}.json`,
+      `../data/parsedOfferList-${CustomDate.TIME_STAMP()}.json`,
     ).catch((err: NodeJS.ErrnoException | null) => console.error(err));
 
     if (!isFileSaved) {
