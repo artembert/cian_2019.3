@@ -38,7 +38,7 @@ async function getParsedDataPageByPage(
   extendedRequestOptions: CianRequest,
 ): Promise<void> {
   const startDate: string = CustomDate.TIME_STAMP();
-  while (responseData && globalState.proceedOffers <= 90) {
+  while (responseData && globalState.proceedOffers < globalState.respondedOffers) {
     responseData = await getResponse(extendedRequestOptions);
 
     const parsedOfferList: SimplifyOffer[] = await parseSerializedData(

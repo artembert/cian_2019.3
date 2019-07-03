@@ -1,12 +1,17 @@
 import { CianRequest, Rent, Sale } from 'CianRequest';
 
+/* region code:
+  2 - SPb
+  4593 - Moscow region
+ */
+
 export let requestOptions: CianRequest = {
   uri: 'https://spb.cian.ru/cian-api/site/v1/search-offers/',
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
   json: true,
   body: {
-    region: { type: 'terms', value: [2] },
+    region: { type: 'terms', value: [4593] },
     room: { type: 'terms', value: [] },
     engine_version: { type: 'term', value: 2 },
     currency: { type: 'term', value: 2 },
