@@ -24,7 +24,7 @@ async function init(): Promise<void> {
   const extendedRequestOptions: CianRequest = extendRequestOptions(userInput, requestOptions);
   const responseData: CianResponseData = await getResponse(extendedRequestOptions);
   globalState.respondedOffers = responseData.offerCount;
-  getParsedDataPageByPage(responseData, globalState, extendedRequestOptions);
+  await getParsedDataPageByPage(responseData, globalState, extendedRequestOptions);
 }
 
 function nextPage(extendedRequestOptions: CianRequest): CianRequest {
