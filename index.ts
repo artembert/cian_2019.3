@@ -57,7 +57,7 @@ async function getParsedDataPageByPage(
     }
 
     extendedRequestOptions = nextPage(extendedRequestOptions);
-    await timer(getRandomInteger(1000, 3000));
+    // await timer(getRandomInteger(1000, 3000));
   }
 }
 
