@@ -1,15 +1,15 @@
-import { requestOptions } from './configs/requestOptions';
-import { askForRequestOptions } from './askForRequestOptions';
-import CustomConsole from './CustomConsole';
+import { requestOptions } from './src/configs/requestOptions';
+import { askForRequestOptions } from './src/askForRequestOptions';
+import CustomConsole from './src/CustomConsole';
 import { CianResponseData } from 'CianResponse';
 import { CianRequest, TypeAndRoomChoice } from 'CianRequest';
-import { appendOrSaveFile, saveFile } from './saveFile';
+import { appendOrSaveFile } from './src/saveFile';
 import { SimplifyOffer } from 'SimplifyOffer';
-import { extendRequestOptions } from './extendRequestOptions';
-import { getResponse } from './getResponse';
-import { parseSerializedData } from './parseSerializedData';
+import { extendRequestOptions } from './src/extendRequestOptions';
+import { getResponse } from './src/getResponse';
+import { parseSerializedData } from './src/parseSerializedData';
 import { GlobalState } from 'GlobalState';
-import { CustomDate } from './CustomDate';
+import { CustomDate } from './src/CustomDate';
 
 const globalState: GlobalState = {
   proceedOffers: 0,
@@ -47,8 +47,8 @@ async function getParsedDataPageByPage(
       globalState,
     );
 
-    const isFileSaved = await saveFile(
-      `../data/parsedOfferList-${CustomDate.TIME_STAMP()}.json`,
+    const isFileSaved = await appendOrSaveFile(
+      `./data/parsedOfferList-${startDate}.json`,
       parsedOfferList,
     ).catch((err: NodeJS.ErrnoException | null) => console.error(err));
 
