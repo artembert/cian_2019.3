@@ -57,5 +57,16 @@ async function getParsedDataPageByPage(
     }
 
     extendedRequestOptions = nextPage(extendedRequestOptions);
+    await timer(getRandomInteger(1000, 3000));
   }
+}
+
+function timer(ms: number): Promise<void> {
+  // tslint:disable-next-line:promise-must-complete
+  return new Promise(() => setTimeout(() => {}, ms));
+}
+
+export function getRandomInteger(min: number = 0, max: number): number {
+  // tslint:disable-next-line:insecure-random
+  return Math.floor(min + Math.random() * (max - min));
 }
