@@ -15,6 +15,12 @@ const globalState: GlobalState = {
   proceedOffers: 0,
   respondedOffers: 0,
 };
+const MAX_FLOOR: number = 50;
+const FLOOR_INTERVAL_STEP: number = 3;
+const floorInterval: { min: number; max: number } = {
+  min: requestOptions.body.floor.value.gte,
+  max: requestOptions.body.floor.value.lte,
+};
 
 init();
 
@@ -38,7 +44,7 @@ async function getParsedDataPageByPage(
   extendedRequestOptions: CianRequest,
 ): Promise<void> {
   const startDate: string = CustomDate.TIME_STAMP();
-  while (responseData && globalState.proceedOffers < globalState.respondedOffers) {
+  while (floorInterval.min < MAX_FLOOR) {
     responseData = await getResponse(extendedRequestOptions);
 
     const parsedOfferList: SimplifyOffer[] = await parseSerializedData(
@@ -46,6 +52,11 @@ async function getParsedDataPageByPage(
       extendedRequestOptions,
       globalState,
     );
+
+    if (!parsedOfferList || !parsedOfferList.length) {
+      extendedRequestOptions = updateFloors(extendedRequestOptions);
+      continue;
+    }
 
     const isFileSaved = await appendOrSaveFile(
       `./data/parsedOfferList-${startDate}.json`,
@@ -57,16 +68,24 @@ async function getParsedDataPageByPage(
     }
 
     extendedRequestOptions = nextPage(extendedRequestOptions);
-    // await timer(getRandomInteger(1000, 3000));
   }
 }
 
-function timer(ms: number): Promise<void> {
-  // tslint:disable-next-line:promise-must-complete
-  return new Promise(() => setTimeout(() => {}, ms));
+function updateFloors(request: CianRequest): CianRequest {
+  floorInterval.min = floorInterval.max + 1;
+  floorInterval.max = floorInterval.min + FLOOR_INTERVAL_STEP;
+  changeFloor(request, floorInterval.min, floorInterval.max);
+  console.log(request.body.floor.value);
+  return goToFirstPage(request);
 }
 
-export function getRandomInteger(min: number = 0, max: number): number {
-  // tslint:disable-next-line:insecure-random
-  return Math.floor(min + Math.random() * (max - min));
+function goToFirstPage(extendedRequestOptions: CianRequest): CianRequest {
+  extendedRequestOptions.body.page.value = 1;
+  return extendedRequestOptions;
+}
+
+function changeFloor(request: CianRequest, minFloor: number, maxFloor: number): CianRequest {
+  request.body.floor.value.gte = minFloor;
+  request.body.floor.value.lte = maxFloor;
+  return request
 }

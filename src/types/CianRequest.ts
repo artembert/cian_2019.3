@@ -41,8 +41,8 @@ export interface Currency {
 export interface Floor {
   type: string;
   value: {
-    gte: number;
-    lte: number;
+    gte: number; // min includes
+    lte: number; // max includes
   };
 }
 
