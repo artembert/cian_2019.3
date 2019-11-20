@@ -8,9 +8,9 @@ export function extendRequestOptions(
 ): CianRequest {
   console.log('extendRequestOptions()');
   if (options.adType === 'rent') {
-    Object.assign(requestOptions, rentOption);
+    Object.assign(requestOptions.body, rentOption);
   } else if (options.adType === 'sale') {
-    Object.assign(requestOptions, saleOptions);
+    Object.assign(requestOptions.body, saleOptions);
   }
   requestOptions.body.room.value = roomCountCode[options.roomCount];
   return requestOptions;

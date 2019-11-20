@@ -18,7 +18,7 @@ export interface Body {
   page: Currency;
   floor: Floor;
   floorn: Floor;
-  _type: string;
+  _type?: string;
   for_day: ForDay;
   rent?: Rent;
   sale?: Sale;
