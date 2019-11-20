@@ -8,7 +8,7 @@ const appendFile = util.promisify(fs.appendFile);
 
 export async function saveFile(pathToFile: string, data: any): Promise<void> {
   console.log('saveFile()');
-  await writeFile(pathToFile, JSON.stringify([...data], null, 2), 'utf8');
+  await writeFile(pathToFile, JSON.stringify(data, null, 2), 'utf8');
   CustomConsole.SYSTEM_INFORMATION(
     `file ${pathToFile} created`,
   );

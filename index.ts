@@ -3,13 +3,15 @@ import { askForRequestOptions } from './src/askForRequestOptions';
 import CustomConsole from './src/CustomConsole';
 import { CianResponseData } from 'CianResponse';
 import { CianRequest, TypeAndRoomChoice } from 'CianRequest';
-import { appendOrSaveFile, loadFile, saveRawFile } from './src/saveFile';
+import { appendOrSaveFile, loadFile, saveFile, saveRawFile } from './src/saveFile';
 import { SimplifyOffer } from 'SimplifyOffer';
 import { extendRequestOptions } from './src/extendRequestOptions';
 import { getResponse } from './src/getResponse';
 import { parseSerializedData } from './src/parseSerializedData';
 import { GlobalState } from 'GlobalState';
 import { CustomDate } from './src/CustomDate';
+import { toGeoJSON } from './src/geo-json-convert';
+import { GetFileNameConfig } from 'get-file-name-config';
 
 const globalState: GlobalState = {
   proceedOffers: 0,
@@ -38,9 +40,19 @@ async function init(): Promise<void> {
   const responseData: CianResponseData = await getResponse(extendedRequestOptions);
   globalState.respondedOffers = responseData.offerCount;
   await getParsedDataPageByPage(responseData, globalState, extendedRequestOptions);
-  const invalidResponsesJSON = await loadFile(getFileName(extendedRequestOptions, startDate, true));
+  const invalidResponsesJSON = await loadFile(
+    getFileName({ request: extendedRequestOptions, startDate, isTemp: true }),
+  );
   const validResponses: string = mergeResponses(invalidResponsesJSON);
-  await saveRawFile(getFileName(extendedRequestOptions, startDate, false), validResponses);
+  await saveRawFile(
+    getFileName({
+      request: extendedRequestOptions,
+      startDate,
+    }),
+    validResponses,
+  );
+  const geoFile = toGeoJSON(JSON.parse(validResponses));
+  await saveFile(getFileName({ request: extendedRequestOptions, startDate, isGeoJSON: true }), geoFile);
 }
 
 function nextPage(extendedRequestOptions: CianRequest): CianRequest {
@@ -72,7 +84,7 @@ async function getParsedDataPageByPage(
     }
 
     await appendOrSaveFile(
-      getFileName(extendedRequestOptions, startDate, true),
+      getFileName({ request: extendedRequestOptions, startDate, isTemp: true }),
       parsedOfferList,
     ).catch((err: NodeJS.ErrnoException | null) => {
       console.error(err);
@@ -95,7 +107,7 @@ function goToFirstPage(extendedRequestOptions: CianRequest): CianRequest {
   return extendedRequestOptions;
 }
 
-function getFileName(request: CianRequest, startDate: string, isTemp: boolean): string {
+function getFileName({ request, startDate, isTemp, isGeoJSON }: GetFileNameConfig): string {
   return (
     (isTemp ? DATA_PATH.TEMP : DATA_PATH.COMPLETE) +
     RegionName[request.body.region.value[0]] +
@@ -105,8 +117,8 @@ function getFileName(request: CianRequest, startDate: string, isTemp: boolean): 
     request.body.room.value[0] +
     '-' +
     startDate +
-    (isTemp ? '--temp' : '')
-    + '.json'
+    (isTemp ? '--temp' : '') +
+    (isGeoJSON ? '.geojson' : '.json')
   );
 }
 
@@ -116,7 +128,6 @@ function changeFloor(request: CianRequest, minFloor: number, maxFloor: number): 
   return request;
 }
 
-
 function mergeResponses(responses: string): string {
-  return responses.replace(/\]\[/gi, `,`)
+  return responses.replace(/\]\[/gi, `,`);
 }

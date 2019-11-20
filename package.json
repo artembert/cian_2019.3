@@ -6,6 +6,7 @@
     "node": ">= 10.13 <11"
   },
   "devDependencies": {
+    "@types/geojson": "^7946.0.7",
     "@types/jest": "^24.0.0",
     "@types/node": "^10.14.0",
     "jest": "~24.8.0",
@@ -38,6 +39,7 @@
     "superagent": "^5.1.0",
     "ts-node": "^8.5.2",
     "tslib": "~1.9.3",
-    "typescript": "^3.7.2"
+    "typescript": "^3.7.2",
+    "geojson": "^0.5.0"
   }
 }
