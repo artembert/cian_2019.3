@@ -1,7 +1,7 @@
 {
   "name": "cian-api-v1-parser",
   "version": "1.0.0",
-  "description": "\uD83D\uDCCD Get offers rom spb.cian.ru/cian-api/site/v1/search-offers/",
+  "description": "\uD83D\uDCCD Get offers from spb.cian.ru/cian-api/site/v1/search-offers/",
   "engines": {
     "node": ">= 10.16"
   },
