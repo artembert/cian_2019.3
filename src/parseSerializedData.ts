@@ -4,7 +4,6 @@ import { SimplifyOffer } from 'SimplifyOffer';
 import { Offer } from 'Offer';
 import { parseOffer } from './parseOffer';
 import CustomConsole from './CustomConsole';
-import { getResponse } from './getResponse';
 import { GlobalState } from 'GlobalState';
 
 export async function parseSerializedData(
@@ -12,7 +11,6 @@ export async function parseSerializedData(
   extendedRequestOptions: CianRequest,
   globalState: GlobalState,
 ): Promise<SimplifyOffer[]> {
-    responseData = await getResponse(extendedRequestOptions);
       const parsedOfferList: SimplifyOffer[] = [];
       responseData.offersSerialized.forEach((offer: Offer) => {
         const parsedOffer = parseOffer(offer);
