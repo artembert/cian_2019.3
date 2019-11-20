@@ -59,14 +59,13 @@ async function getParsedDataPageByPage(
       continue;
     }
 
-    const isFileSaved = await appendOrSaveFile(
+    await appendOrSaveFile(
       `./data/parsedOfferList-${startDate}.json`,
       parsedOfferList,
-    ).catch((err: NodeJS.ErrnoException | null) => console.error(err));
-
-    if (!isFileSaved) {
+    ).catch((err: NodeJS.ErrnoException | null) => {
+      console.error(err);
       throw new Error('file save FAILED');
-    }
+    });
 
     extendedRequestOptions = nextPage(extendedRequestOptions);
   }
