@@ -1,4 +1,4 @@
-import { requestOptions } from './src/configs/requestOptions';
+import { RegionName, requestOptions } from './src/configs/requestOptions';
 import { askForRequestOptions } from './src/askForRequestOptions';
 import CustomConsole from './src/CustomConsole';
 import { CianResponseData } from 'CianResponse';
@@ -14,6 +14,10 @@ import { CustomDate } from './src/CustomDate';
 const globalState: GlobalState = {
   proceedOffers: 0,
   respondedOffers: 0,
+};
+const DATA_PATH = {
+  TEMP: `./data/temp/`,
+  COMPLETE: `./data/`,
 };
 const MAX_FLOOR: number = 50;
 const FLOOR_INTERVAL_STEP: number = 3;
@@ -45,7 +49,10 @@ async function getParsedDataPageByPage(
 ): Promise<void> {
   const startDate: string = CustomDate.TIME_STAMP();
   while (floorInterval.min < MAX_FLOOR) {
-    CustomConsole.SELECTED_FLOORS(extendedRequestOptions.body.floor.value.gte, extendedRequestOptions.body.floor.value.lte);
+    CustomConsole.SELECTED_FLOORS(
+      extendedRequestOptions.body.floor.value.gte,
+      extendedRequestOptions.body.floor.value.lte,
+    );
     responseData = await getResponse(extendedRequestOptions);
 
     const parsedOfferList: SimplifyOffer[] = await parseSerializedData(
@@ -60,7 +67,7 @@ async function getParsedDataPageByPage(
     }
 
     await appendOrSaveFile(
-      `./data/parsedOfferList-${startDate}.json`,
+      getFileName(extendedRequestOptions, startDate, true),
       parsedOfferList,
     ).catch((err: NodeJS.ErrnoException | null) => {
       console.error(err);
@@ -83,8 +90,23 @@ function goToFirstPage(extendedRequestOptions: CianRequest): CianRequest {
   return extendedRequestOptions;
 }
 
+function getFileName(request: CianRequest, startDate: string, isTemp: boolean): string {
+  return (
+    (isTemp ? DATA_PATH.TEMP : DATA_PATH.COMPLETE) +
+    RegionName[request.body.region.value[0]] +
+    '-' +
+    request.body._type.substring(4) +
+    '-' +
+    request.body.room.value[0] +
+    '-' +
+    startDate +
+    (isTemp ? '--temp' : '')
+    + '.json'
+  );
+}
+
 function changeFloor(request: CianRequest, minFloor: number, maxFloor: number): CianRequest {
   request.body.floor.value.gte = minFloor;
   request.body.floor.value.lte = maxFloor;
-  return request
+  return request;
 }
