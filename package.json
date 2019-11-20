@@ -1,9 +1,9 @@
 {
-  "name": "node-typescript-boilerplate",
-  "version": "0.0.0",
-  "description": "Minimalistic boilerplate to quick-start Node.js development in TypeScript.",
+  "name": "cian-api-v1-parser",
+  "version": "1.0.0",
+  "description": "\uD83D\uDCCD Get offers rom spb.cian.ru/cian-api/site/v1/search-offers/",
   "engines": {
-    "node": ">= 10.13 <11"
+    "node": ">= 10.16"
   },
   "devDependencies": {
     "@types/geojson": "^7946.0.7",
@@ -18,16 +18,7 @@
     "tslint-microsoft-contrib": "~6.1.0",
     "tsutils": "~3.10.0"
   },
-  "scripts": {
-    "clean": "rimraf coverage build tmp",
-    "build": "tsc -p tsconfig.release.json",
-    "build:watch": "tsc -w -p tsconfig.release.json",
-    "lint": "tslint -t stylish --project \"tsconfig.json\"",
-    "test": "jest --coverage",
-    "test:watch": "jest --watch"
-  },
-  "author": "Jakub Synowiec <github@jakubsynowiec.info>",
-  "license": "Apache-2.0",
+  "author": "Artem Beresnev <artembert@gmail.com>",
   "dependencies": {
     "@types/inquirer": "^6.0.3",
     "@types/luxon": "^1.15.2",
