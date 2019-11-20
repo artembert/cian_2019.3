@@ -1,5 +1,6 @@
 import { AdType } from 'AdType';
 import { RoomCount } from 'RoomCount';
+import { RegionCode } from 'region-code';
 
 export interface CianRequest {
   uri: string;
@@ -25,7 +26,7 @@ export interface Body {
 
 export interface Region {
   type: string;
-  value: number[];
+  value: RegionCode[];
 }
 
 export interface Room {

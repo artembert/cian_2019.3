@@ -38,3 +38,8 @@ export const rentOption: Rent = {
     value: "!1"
   }
 };
+
+export const RegionName = {
+  2: `SPb`,
+  4593: `MoscowRegion`
+};
