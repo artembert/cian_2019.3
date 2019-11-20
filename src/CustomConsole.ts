@@ -29,6 +29,10 @@ export default class CustomConsole {
     console.log(chalk.green.bold(`RESULT: [${savedCount}] of [${totalCount}]`));
   }
 
+  public static SELECTED_FLOORS(min: number, max: number): void {
+    console.log(chalk.blue.bold(`FLOORS: from [${min}] to [${max}]`));
+  }
+
   public static SYSTEM_INFORMATION(message: string): void {
     console.log(chalk.bgCyan.black(message));
   }

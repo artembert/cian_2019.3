@@ -45,6 +45,7 @@ async function getParsedDataPageByPage(
 ): Promise<void> {
   const startDate: string = CustomDate.TIME_STAMP();
   while (floorInterval.min < MAX_FLOOR) {
+    CustomConsole.SELECTED_FLOORS(extendedRequestOptions.body.floor.value.gte, extendedRequestOptions.body.floor.value.lte);
     responseData = await getResponse(extendedRequestOptions);
 
     const parsedOfferList: SimplifyOffer[] = await parseSerializedData(
@@ -75,7 +76,6 @@ function updateFloors(request: CianRequest): CianRequest {
   floorInterval.min = floorInterval.max + 1;
   floorInterval.max = floorInterval.min + FLOOR_INTERVAL_STEP;
   changeFloor(request, floorInterval.min, floorInterval.max);
-  console.log(request.body.floor.value);
   return goToFirstPage(request);
 }
 
