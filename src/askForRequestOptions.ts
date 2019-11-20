@@ -14,7 +14,7 @@ export function askForRequestOptions(): Promise<TypeAndRoomChoice> {
       type: 'list',
       name: 'roomCount',
       message: 'Rent or sail?',
-      choices: ['apartment-studio', '1-room', '2-room', '3-room'],
+      choices: ['1-room', '2-room', '3-room', 'apartment-studio'],
     },
   ]);
 }
