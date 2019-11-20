@@ -3,11 +3,20 @@ import * as util from 'util';
 import CustomConsole from './CustomConsole';
 
 const writeFile = util.promisify(fs.writeFile);
+const readFile = util.promisify(fs.readFile);
 const appendFile = util.promisify(fs.appendFile);
 
 export async function saveFile(pathToFile: string, data: any): Promise<void> {
   console.log('saveFile()');
   await writeFile(pathToFile, JSON.stringify([...data], null, 2), 'utf8');
+  CustomConsole.SYSTEM_INFORMATION(
+    `file ${pathToFile} created`,
+  );
+}
+
+export async function saveRawFile(pathToFile: string, data: any): Promise<void> {
+  console.log('saveRawFile()');
+  await writeFile(pathToFile, data, 'utf8');
   CustomConsole.SYSTEM_INFORMATION(
     `file ${pathToFile} created`,
   );
@@ -26,4 +35,11 @@ export async function appendOrSaveFile(pathToFile: string, data: any): Promise<v
       `file ${pathToFile} created`,
     );
   }
+}
+
+export async function loadFile(pathToFile: string): Promise<string> {
+  CustomConsole.INPUT_OUTPUT(
+    `loading file [${pathToFile}]`,
+  );
+  return await readFile(pathToFile, 'utf8');
 }

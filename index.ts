@@ -3,7 +3,7 @@ import { askForRequestOptions } from './src/askForRequestOptions';
 import CustomConsole from './src/CustomConsole';
 import { CianResponseData } from 'CianResponse';
 import { CianRequest, TypeAndRoomChoice } from 'CianRequest';
-import { appendOrSaveFile } from './src/saveFile';
+import { appendOrSaveFile, loadFile, saveRawFile } from './src/saveFile';
 import { SimplifyOffer } from 'SimplifyOffer';
 import { extendRequestOptions } from './src/extendRequestOptions';
 import { getResponse } from './src/getResponse';
@@ -26,15 +26,21 @@ const floorInterval: { min: number; max: number } = {
   max: requestOptions.body.floor.value.lte,
 };
 
+const startDate: string = CustomDate.TIME_STAMP();
+let extendedRequestOptions: CianRequest;
+
 init();
 
 async function init(): Promise<void> {
   CustomConsole.HELLO_MESSAGE();
   const userInput: TypeAndRoomChoice = await askForRequestOptions();
-  const extendedRequestOptions: CianRequest = extendRequestOptions(userInput, requestOptions);
+  extendedRequestOptions = extendRequestOptions(userInput, requestOptions);
   const responseData: CianResponseData = await getResponse(extendedRequestOptions);
   globalState.respondedOffers = responseData.offerCount;
   await getParsedDataPageByPage(responseData, globalState, extendedRequestOptions);
+  const invalidResponsesJSON = await loadFile(getFileName(extendedRequestOptions, startDate, true));
+  const validResponses: string = mergeResponses(invalidResponsesJSON);
+  await saveRawFile(getFileName(extendedRequestOptions, startDate, false), validResponses);
 }
 
 function nextPage(extendedRequestOptions: CianRequest): CianRequest {
@@ -47,7 +53,6 @@ async function getParsedDataPageByPage(
   globalState: GlobalState,
   extendedRequestOptions: CianRequest,
 ): Promise<void> {
-  const startDate: string = CustomDate.TIME_STAMP();
   while (floorInterval.min < MAX_FLOOR) {
     CustomConsole.SELECTED_FLOORS(
       extendedRequestOptions.body.floor.value.gte,
@@ -109,4 +114,9 @@ function changeFloor(request: CianRequest, minFloor: number, maxFloor: number): 
   request.body.floor.value.gte = minFloor;
   request.body.floor.value.lte = maxFloor;
   return request;
+}
+
+
+function mergeResponses(responses: string): string {
+  return responses.replace(/\]\[/gi, `,`)
 }
