@@ -1,9 +1,4 @@
-import {
-  FLOOR_INTERVAL_STEP,
-  MAX_FLOOR,
-  RegionName,
-  defaultRequest,
-} from './src/configs/requestOptions';
+import { defaultRequest, FLOOR_INTERVAL_STEP, MAX_FLOOR } from './src/configs/requestOptions';
 import { askForRequestOptions } from './src/askForRequestOptions';
 import CustomConsole from './src/CustomConsole';
 import { CianRequest, TypeAndRoomChoice } from 'CianRequest';
@@ -15,16 +10,12 @@ import { parseSerializedData } from './src/parseSerializedData';
 import { GlobalState } from 'GlobalState';
 import { CustomDate } from './src/CustomDate';
 import { toGeoJSON } from './src/geo-json-convert';
-import { GetFileNameConfig } from 'get-file-name-config';
 import { getTotalOffersCount } from './src/getTotalOffersCount';
+import { getFileName } from './src/get-file-name';
 
 const globalState: GlobalState = {
   proceedOffers: 0,
   respondedOffers: 0,
-};
-const DATA_PATH = {
-  TEMP: `./data/temp/`,
-  COMPLETE: `./data/`,
 };
 
 const floorInterval: { min: number; max: number } = {
@@ -59,10 +50,7 @@ async function init(): Promise<void> {
     validResponses,
   );
   const geoFile = toGeoJSON(JSON.parse(validResponses));
-  await saveFile(
-    getFileName({ request: request, startDate, isGeoJSON: true }),
-    geoFile,
-  );
+  await saveFile(getFileName({ request: request, startDate, isGeoJSON: true }), geoFile);
 }
 
 function nextPage(extendedRequestOptions: CianRequest): CianRequest {
@@ -115,21 +103,6 @@ function updateFloors(request: CianRequest): CianRequest {
 function goToFirstPage(extendedRequestOptions: CianRequest): CianRequest {
   extendedRequestOptions.body.page.value = 1;
   return extendedRequestOptions;
-}
-
-function getFileName({ request, startDate, isTemp, isGeoJSON }: GetFileNameConfig): string {
-  return (
-    (isTemp ? DATA_PATH.TEMP : DATA_PATH.COMPLETE) +
-    RegionName[request.body.region.value[0]] +
-    '-' +
-    request.body._type.substring(4) +
-    '-' +
-    request.body.room.value[0] +
-    '-' +
-    startDate +
-    (isTemp ? '--temp' : '') +
-    (isGeoJSON ? '.geojson' : '.json')
-  );
 }
 
 function changeFloor(request: CianRequest, minFloor: number, maxFloor: number): CianRequest {
