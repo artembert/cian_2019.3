@@ -39,7 +39,7 @@ async function init(): Promise<void> {
   extendedRequestOptions = extendRequestOptions(userInput, requestOptions);
   const responseData: CianResponseData = await getResponse(extendedRequestOptions);
   globalState.respondedOffers = responseData.offerCount;
-  await getParsedDataPageByPage(responseData, globalState, extendedRequestOptions);
+  await getParsedDataPageByPage(globalState, extendedRequestOptions);
   const invalidResponsesJSON = await loadFile(
     getFileName({ request: extendedRequestOptions, startDate, isTemp: true }),
   );
@@ -61,7 +61,6 @@ function nextPage(extendedRequestOptions: CianRequest): CianRequest {
 }
 
 async function getParsedDataPageByPage(
-  responseData: CianResponseData,
   globalState: GlobalState,
   extendedRequestOptions: CianRequest,
 ): Promise<void> {
@@ -70,7 +69,7 @@ async function getParsedDataPageByPage(
       extendedRequestOptions.body.floor.value.gte,
       extendedRequestOptions.body.floor.value.lte,
     );
-    responseData = await getResponse(extendedRequestOptions);
+    const responseData = await getResponse(extendedRequestOptions);
 
     const parsedOfferList: SimplifyOffer[] = await parseSerializedData(
       responseData,
