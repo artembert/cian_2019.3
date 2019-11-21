@@ -10,11 +10,11 @@ export default class CustomConsole {
   }
 
   public static DATA_LOADED(message: string): void {
-    console.log(chalk.bgGreen.gray(message));
+    console.log(chalk.magenta.bold(message));
   }
 
   public static HELLO_MESSAGE(): void {
-    console.log(chalk.gray.bgWhite.bold(' HELLO '));
+    console.log(chalk.bold.cyan(' HELLO '));
   }
 
   public static ITERATE_OVER_DATA(data: CianResponseData): void {
