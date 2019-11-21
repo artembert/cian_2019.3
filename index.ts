@@ -31,7 +31,7 @@ const floorInterval: { min: number; max: number } = {
 const startDate: string = CustomDate.TIME_STAMP();
 let extendedRequestOptions: CianRequest;
 
-init();
+init().then(() => CustomConsole.DATA_LOADED(`  Offers saved: ${globalState.proceedOffers}  `));
 
 async function init(): Promise<void> {
   CustomConsole.HELLO_MESSAGE();
@@ -52,7 +52,10 @@ async function init(): Promise<void> {
     validResponses,
   );
   const geoFile = toGeoJSON(JSON.parse(validResponses));
-  await saveFile(getFileName({ request: extendedRequestOptions, startDate, isGeoJSON: true }), geoFile);
+  await saveFile(
+    getFileName({ request: extendedRequestOptions, startDate, isGeoJSON: true }),
+    geoFile,
+  );
 }
 
 function nextPage(extendedRequestOptions: CianRequest): CianRequest {

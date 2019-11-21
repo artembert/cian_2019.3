@@ -9,8 +9,8 @@ export default class CustomConsole {
     console.log(serializedData);
   }
 
-  public static DATA_LOADED(): void {
-    console.log(chalk.bgGreen.gray(' Data loaded '));
+  public static DATA_LOADED(message: string): void {
+    console.log(chalk.bgGreen.gray(message));
   }
 
   public static HELLO_MESSAGE(): void {
