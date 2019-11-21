@@ -45,6 +45,7 @@ async function init(): Promise<void> {
   globalState.respondedOffers = await getTotalOffersCount(request);
   CustomConsole.DATA_LOADED(`Total Offers Count: [${globalState.respondedOffers}]`);
 
+  request = changeFloor(request, 1, FLOOR_INTERVAL_STEP);
   await getParsedDataPageByPage(globalState, request);
   const invalidResponsesJSON = await loadFile(
     getFileName({ request: request, startDate, isTemp: true }),

@@ -19,8 +19,8 @@ export let defaultRequest: CianRequest = {
     engine_version: { type: 'term', value: 2 },
     currency: { type: 'term', value: 2 },
     page: { type: 'term', value: 1 },
-    floor: { type: 'range', value: { gte: 1, lte: 2 } },
-    floorn: { type: 'range', value: { gte: 1, lte: 50 } }, // floor number in a house
+    floor: { type: 'range', value: { gte: 1, lte: FLOOR_INTERVAL_STEP } },
+    floorn: { type: 'range', value: { gte: 1, lte: MAX_FLOOR } }, // floor number in a house
     for_day: { type: 'term', value: '!1' },
   },
 };
