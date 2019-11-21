@@ -5,6 +5,9 @@ import { CianRequest, Rent, Sale } from 'CianRequest';
   4593 - Moscow region
  */
 
+export const MAX_FLOOR: number = 50;
+export const FLOOR_INTERVAL_STEP: number = 3;
+
 export let requestOptions: CianRequest = {
   uri: 'https://spb.cian.ru/cian-api/site/v1/search-offers/',
   method: 'POST',

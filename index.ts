@@ -1,7 +1,11 @@
-import { RegionName, requestOptions } from './src/configs/requestOptions';
+import {
+  FLOOR_INTERVAL_STEP,
+  MAX_FLOOR,
+  RegionName,
+  requestOptions,
+} from './src/configs/requestOptions';
 import { askForRequestOptions } from './src/askForRequestOptions';
 import CustomConsole from './src/CustomConsole';
-import { CianResponseData } from 'CianResponse';
 import { CianRequest, TypeAndRoomChoice } from 'CianRequest';
 import { appendOrSaveFile, loadFile, saveFile, saveRawFile } from './src/saveFile';
 import { SimplifyOffer } from 'SimplifyOffer';
@@ -12,6 +16,7 @@ import { GlobalState } from 'GlobalState';
 import { CustomDate } from './src/CustomDate';
 import { toGeoJSON } from './src/geo-json-convert';
 import { GetFileNameConfig } from 'get-file-name-config';
+import { getTotalOffersCount } from './src/getTotalOffersCount';
 
 const globalState: GlobalState = {
   proceedOffers: 0,
@@ -21,8 +26,7 @@ const DATA_PATH = {
   TEMP: `./data/temp/`,
   COMPLETE: `./data/`,
 };
-const MAX_FLOOR: number = 50;
-const FLOOR_INTERVAL_STEP: number = 3;
+
 const floorInterval: { min: number; max: number } = {
   min: requestOptions.body.floor.value.gte,
   max: requestOptions.body.floor.value.lte,
@@ -31,14 +35,16 @@ const floorInterval: { min: number; max: number } = {
 const startDate: string = CustomDate.TIME_STAMP();
 let extendedRequestOptions: CianRequest;
 
-init().then(() => CustomConsole.DATA_LOADED(`  Offers saved: ${globalState.proceedOffers}  `));
+init().then(() => CustomConsole.DATA_LOADED(`Offers saved: [${globalState.proceedOffers}]`));
 
 async function init(): Promise<void> {
   CustomConsole.HELLO_MESSAGE();
   const userInput: TypeAndRoomChoice = await askForRequestOptions();
   extendedRequestOptions = extendRequestOptions(userInput, requestOptions);
-  const responseData: CianResponseData = await getResponse(extendedRequestOptions);
-  globalState.respondedOffers = responseData.offerCount;
+
+  globalState.respondedOffers = await getTotalOffersCount(extendedRequestOptions);
+  CustomConsole.DATA_LOADED(`Total Offers Count: [${globalState.respondedOffers}]`);
+
   await getParsedDataPageByPage(globalState, extendedRequestOptions);
   const invalidResponsesJSON = await loadFile(
     getFileName({ request: extendedRequestOptions, startDate, isTemp: true }),
