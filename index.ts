@@ -1,7 +1,4 @@
-import {
-  defaultRequest,
-  FLOOR_INTERVAL_STEP,
-} from './src/configs/requestOptions';
+import { defaultRequest } from './src/configs/requestOptions';
 import { askForRequestOptions } from './src/askForRequestOptions';
 import CustomConsole from './src/CustomConsole';
 import { CianRequest, TypeAndRoomChoice } from 'CianRequest';
@@ -13,7 +10,6 @@ import { toGeoJSON } from './src/geo-json-convert';
 import { getTotalOffersCount } from './src/getTotalOffersCount';
 import { getFileName } from './src/get-file-name';
 import { getParsedDataPageByPage } from './src/get-parsed-data-page-by-page';
-import { changeFloor } from './src/change-floor';
 
 const globalState: GlobalState = {
   proceedOffers: 0,
@@ -36,7 +32,6 @@ async function init(): Promise<void> {
     `Total Offers Count: [${globalState.respondedOffers}]`,
   );
 
-  request = changeFloor(request, 1, FLOOR_INTERVAL_STEP);
   await getParsedDataPageByPage(globalState, request, startDate);
   const invalidResponsesJSON = await loadFile(
     getFileName({ request: request, startDate, isTemp: true }),
