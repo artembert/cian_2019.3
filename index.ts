@@ -53,43 +53,43 @@ async function init(): Promise<void> {
   await saveFile(getFileName({ request: request, startDate, isGeoJSON: true }), geoFile);
 }
 
-function nextPage(extendedRequestOptions: CianRequest): CianRequest {
-  extendedRequestOptions.body.page.value++;
-  return extendedRequestOptions;
+function nextPage(request: CianRequest): CianRequest {
+  request.body.page.value++;
+  return request;
 }
 
 async function getParsedDataPageByPage(
   globalState: GlobalState,
-  extendedRequestOptions: CianRequest,
+  request: CianRequest,
 ): Promise<void> {
   while (floorInterval.min <= MAX_FLOOR) {
     CustomConsole.SELECTED_FLOORS(
-      extendedRequestOptions.body.floor.value.gte,
-      extendedRequestOptions.body.floor.value.lte,
+      request.body.floor.value.gte,
+      request.body.floor.value.lte,
     );
-    CustomConsole.BLUE(`PAGE: [${extendedRequestOptions.body.page.value}]`);
-    const responseData = await getResponse(extendedRequestOptions);
+    CustomConsole.BLUE(`PAGE: [${request.body.page.value}]`);
+    const responseData = await getResponse(request);
 
     const parsedOfferList: SimplifyOffer[] = await parseSerializedData(
       responseData,
-      extendedRequestOptions,
+      request,
       globalState,
     );
 
     if (!parsedOfferList || !parsedOfferList.length) {
-      extendedRequestOptions = updateFloors(extendedRequestOptions);
+      request = updateFloors(request);
       continue;
     }
 
     await appendOrSaveFile(
-      getFileName({ request: extendedRequestOptions, startDate, isTemp: true }),
+      getFileName({ request: request, startDate, isTemp: true }),
       parsedOfferList,
     ).catch((err: NodeJS.ErrnoException | null) => {
       console.error(err);
       throw new Error('file save FAILED');
     });
 
-    extendedRequestOptions = nextPage(extendedRequestOptions);
+    request = nextPage(request);
   }
 }
 
@@ -100,9 +100,9 @@ function updateFloors(request: CianRequest): CianRequest {
   return goToFirstPage(request);
 }
 
-function goToFirstPage(extendedRequestOptions: CianRequest): CianRequest {
-  extendedRequestOptions.body.page.value = 1;
-  return extendedRequestOptions;
+function goToFirstPage(request: CianRequest): CianRequest {
+  request.body.page.value = 1;
+  return request;
 }
 
 function changeFloor(request: CianRequest, minFloor: number, maxFloor: number): CianRequest {
