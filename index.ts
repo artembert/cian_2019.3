@@ -2,7 +2,7 @@ import {
   FLOOR_INTERVAL_STEP,
   MAX_FLOOR,
   RegionName,
-  requestOptions,
+  defaultRequest,
 } from './src/configs/requestOptions';
 import { askForRequestOptions } from './src/askForRequestOptions';
 import CustomConsole from './src/CustomConsole';
@@ -28,38 +28,38 @@ const DATA_PATH = {
 };
 
 const floorInterval: { min: number; max: number } = {
-  min: requestOptions.body.floor.value.gte,
-  max: requestOptions.body.floor.value.lte,
+  min: defaultRequest.body.floor.value.gte,
+  max: defaultRequest.body.floor.value.lte,
 };
 
 const startDate: string = CustomDate.TIME_STAMP();
-let extendedRequestOptions: CianRequest;
+let request: CianRequest;
 
 init().then(() => CustomConsole.DATA_LOADED(`Offers saved: [${globalState.proceedOffers}]`));
 
 async function init(): Promise<void> {
   CustomConsole.HELLO_MESSAGE();
   const userInput: TypeAndRoomChoice = await askForRequestOptions();
-  extendedRequestOptions = extendRequestOptions(userInput, requestOptions);
+  request = extendRequestOptions(userInput, defaultRequest);
 
-  globalState.respondedOffers = await getTotalOffersCount(extendedRequestOptions);
+  globalState.respondedOffers = await getTotalOffersCount(request);
   CustomConsole.DATA_LOADED(`Total Offers Count: [${globalState.respondedOffers}]`);
 
-  await getParsedDataPageByPage(globalState, extendedRequestOptions);
+  await getParsedDataPageByPage(globalState, request);
   const invalidResponsesJSON = await loadFile(
-    getFileName({ request: extendedRequestOptions, startDate, isTemp: true }),
+    getFileName({ request: request, startDate, isTemp: true }),
   );
   const validResponses: string = mergeResponses(invalidResponsesJSON);
   await saveRawFile(
     getFileName({
-      request: extendedRequestOptions,
+      request: request,
       startDate,
     }),
     validResponses,
   );
   const geoFile = toGeoJSON(JSON.parse(validResponses));
   await saveFile(
-    getFileName({ request: extendedRequestOptions, startDate, isGeoJSON: true }),
+    getFileName({ request: request, startDate, isGeoJSON: true }),
     geoFile,
   );
 }
@@ -137,5 +137,5 @@ function changeFloor(request: CianRequest, minFloor: number, maxFloor: number): 
 }
 
 function mergeResponses(responses: string): string {
-  return responses.replace(/\]\[/gi, `,`);
+  return responses.replace(/]\[/gi, `,`);
 }

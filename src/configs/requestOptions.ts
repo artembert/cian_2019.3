@@ -8,7 +8,7 @@ import { CianRequest, Rent, Sale } from 'CianRequest';
 export const MAX_FLOOR: number = 50;
 export const FLOOR_INTERVAL_STEP: number = 3;
 
-export let requestOptions: CianRequest = {
+export let defaultRequest: CianRequest = {
   uri: 'https://spb.cian.ru/cian-api/site/v1/search-offers/',
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
