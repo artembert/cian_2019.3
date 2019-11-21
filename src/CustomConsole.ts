@@ -1,6 +1,5 @@
 import { CianResponseData } from 'CianResponse';
-
-const chalk = require('chalk');
+import chalk from 'chalk';
 
 export default class CustomConsole {
   public constructor() {}
@@ -14,7 +13,7 @@ export default class CustomConsole {
   }
 
   public static HELLO_MESSAGE(): void {
-    console.log(chalk.bold.cyan(' HELLO '));
+    console.log(chalk.bold.cyan('HELLO'));
   }
 
   public static ITERATE_OVER_DATA(data: CianResponseData): void {
@@ -31,6 +30,10 @@ export default class CustomConsole {
 
   public static SELECTED_FLOORS(min: number, max: number): void {
     console.log(chalk.blue.bold(`FLOORS: from [${min}] to [${max}]`));
+  }
+
+  public static BLUE(message: string): void {
+    console.log(chalk.bold.blue(message));
   }
 
   public static SYSTEM_INFORMATION(message: string): void {

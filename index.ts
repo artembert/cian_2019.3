@@ -74,11 +74,12 @@ async function getParsedDataPageByPage(
   globalState: GlobalState,
   extendedRequestOptions: CianRequest,
 ): Promise<void> {
-  while (floorInterval.min < MAX_FLOOR) {
+  while (floorInterval.min <= MAX_FLOOR) {
     CustomConsole.SELECTED_FLOORS(
       extendedRequestOptions.body.floor.value.gte,
       extendedRequestOptions.body.floor.value.lte,
     );
+    CustomConsole.BLUE(`PAGE: [${extendedRequestOptions.body.page.value}]`);
     const responseData = await getResponse(extendedRequestOptions);
 
     const parsedOfferList: SimplifyOffer[] = await parseSerializedData(
