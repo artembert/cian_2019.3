@@ -45,9 +45,8 @@ export async function getParsedDataPageByPage(
 }
 
 function updateFloors(request: CianRequest): CianRequest {
-  request.body.floor.value.gte = request.body.floor.value.lte + 1;
-  request.body.floor.value.lte =
-    request.body.floor.value.gte + FLOOR_INTERVAL_STEP;
+  request.body.floor.value.gte += FLOOR_INTERVAL_STEP;
+  request.body.floor.value.lte += FLOOR_INTERVAL_STEP;
   request.body.page.value = 1;
   return request;
 }
