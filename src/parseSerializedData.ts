@@ -17,6 +17,6 @@ export async function parseSerializedData(
     parsedOfferList.push(parsedOffer);
     globalState.proceedOffers++;
   });
-  CustomConsole.DATA_SAVED(globalState.proceedOffers, responseData.offerCount);
+  CustomConsole.DATA_SAVED(globalState.proceedOffers, globalState.respondedOffers);
   return parsedOfferList;
 }
