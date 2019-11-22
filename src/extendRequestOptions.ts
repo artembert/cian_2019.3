@@ -1,17 +1,19 @@
 import { CianRequest, TypeAndRoomChoice } from 'CianRequest';
 import { rentOption, saleOptions } from './configs/requestOptions';
 import { roomCountCode } from './configs/roomCountCode';
+import cloneDeep from "clone-deep";
 
 export function extendRequestOptions(
   options: TypeAndRoomChoice,
-  requestOptions: CianRequest,
+  request: CianRequest,
 ): CianRequest {
+  const extendedRequest: CianRequest = cloneDeep(request);
   console.log('extendRequestOptions()');
   if (options.adType === 'rent') {
-    Object.assign(requestOptions.body, rentOption);
+    Object.assign(extendedRequest.body, rentOption);
   } else if (options.adType === 'sale') {
-    Object.assign(requestOptions.body, saleOptions);
+    Object.assign(extendedRequest.body, saleOptions);
   }
-  requestOptions.body.room.value = roomCountCode[options.roomCount];
-  return requestOptions;
+  extendedRequest.body.room.value = roomCountCode[options.roomCount];
+  return extendedRequest;
 }
