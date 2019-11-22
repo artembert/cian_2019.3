@@ -20,6 +20,7 @@ export async function getParsedDataPageByPage(
     );
     CustomConsole.BLUE(`PAGE: [${request.body.page.value}]`);
     const responseData = await getResponse(request);
+    CustomConsole.IMPORTANT(`Offers by current filter: [${responseData.offerCount}]`);
 
     const parsedOfferList: SimplifyOffer[] = await parseSerializedData(
       responseData,
