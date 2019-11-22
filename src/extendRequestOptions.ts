@@ -7,8 +7,8 @@ export function extendRequestOptions(
   options: TypeAndRoomChoice,
   request: CianRequest,
 ): CianRequest {
-  const extendedRequest: CianRequest = cloneDeep(request);
   console.log('extendRequestOptions()');
+  const extendedRequest: CianRequest = cloneDeep(request);
   if (options.adType === 'rent') {
     Object.assign(extendedRequest.body, rentOption);
   } else if (options.adType === 'sale') {
