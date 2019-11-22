@@ -7,6 +7,7 @@ import { CianRequest, Rent, Sale } from 'CianRequest';
 
 export const MAX_FLOOR: number = 50;
 export const FLOOR_INTERVAL_STEP: number = 1;
+export const MAX_FILTERED_OFFERS_COUNT = 1400;
 
 export const defaultRequest: CianRequest = {
   uri: 'https://spb.cian.ru/cian-api/site/v1/search-offers/',

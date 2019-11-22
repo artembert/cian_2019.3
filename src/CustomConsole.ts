@@ -47,4 +47,8 @@ export default class CustomConsole {
   public static IMPORTANT(message: string): void {
     console.log(chalk.yellowBright(message));
   }
+
+  public static WARNING(message: string): void {
+    console.log(chalk.red(message));
+  }
 }
