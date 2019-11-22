@@ -20,18 +20,23 @@ export async function getParsedDataPageByPage(
     );
     CustomConsole.BLUE(`PAGE: [${request.body.page.value}]`);
     const responseData = await getResponse(request);
-    CustomConsole.IMPORTANT(`Offers by current filter: [${responseData.offerCount}]`);
+    CustomConsole.IMPORTANT(
+      `Offers by current filter: [${responseData.offerCount}]`,
+    );
+
+    if (
+      !responseData.offersSerialized ||
+      !responseData.offersSerialized.length
+    ) {
+      request = updateFloors(request);
+      continue;
+    }
 
     const parsedOfferList: SimplifyOffer[] = await parseSerializedData(
       responseData,
       request,
       globalState,
     );
-
-    if (!parsedOfferList || !parsedOfferList.length) {
-      request = updateFloors(request);
-      continue;
-    }
 
     await appendOrSaveFile(
       getFileName({ request: request, startDate, isTemp: true }),
