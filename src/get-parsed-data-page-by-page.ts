@@ -41,13 +41,11 @@ export async function getParsedDataPageByPage(
       CustomConsole.WARNING(`Need to iterate over floorNumbers`);
       parsedOfferList = await parseSerializedData(
         responseData,
-        request,
         globalState,
       );
     } else {
       parsedOfferList = await parseSerializedData(
         responseData,
-        request,
         globalState,
       );
     }
