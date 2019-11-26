@@ -7,6 +7,8 @@ export type CianResponse = {
     }
 }
 
+export type SerializedOffer = any;
+
 export type CianResponseData = {
   suggestionsQuery: null | string,
   aggregatedCount: number,
@@ -17,7 +19,7 @@ export type CianResponseData = {
   top3IsOn: null| string,
   seoData: Object,
   offerCount: number| number,
-  suggestionsOffers: [],
+  suggestionsOffers: SerializedOffer[],
   jsonQuery: Object,
   avgPriceInformer: null| string,
   breadcrumbs: [],

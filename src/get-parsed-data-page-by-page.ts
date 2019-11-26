@@ -1,16 +1,13 @@
 import { GlobalState } from 'GlobalState';
 import { CianRequest } from 'CianRequest';
-import {
-  FLOOR_INTERVAL_STEP,
-  MAX_FILTERED_OFFERS_COUNT,
-  MAX_FLOOR,
-} from './configs/requestOptions';
+import { FLOOR_INTERVAL_STEP, MAX_FILTERED_OFFERS_COUNT, MAX_FLOOR } from './configs/requestOptions';
 import CustomConsole from './CustomConsole';
 import { getResponse } from './getResponse';
 import { SimplifyOffer } from 'SimplifyOffer';
 import { parseSerializedData } from './parseSerializedData';
 import { appendOrSaveFile } from './saveFile';
 import { getFileName } from './get-file-name';
+import { requestOffersByFloorNumber } from './request-offers-by-floor-number';
 
 export async function getParsedDataPageByPage(
   globalState: GlobalState,
@@ -39,15 +36,10 @@ export async function getParsedDataPageByPage(
 
     if (responseData.offerCount > MAX_FILTERED_OFFERS_COUNT) {
       CustomConsole.WARNING(`Need to iterate over floorNumbers`);
-      parsedOfferList = await parseSerializedData(
-        responseData,
-        globalState,
-      );
+      const rawResponses = await requestOffersByFloorNumber(request, responseData.offerCount);
+      parsedOfferList = await parseSerializedData(rawResponses, globalState);
     } else {
-      parsedOfferList = await parseSerializedData(
-        responseData,
-        globalState,
-      );
+      parsedOfferList = await parseSerializedData(responseData.offersSerialized, globalState);
     }
 
     await appendOrSaveFile(
