@@ -16,20 +16,12 @@ export async function getParsedDataPageByPage(
 ): Promise<void> {
   while (request.body.floor.value.lte <= MAX_FLOOR) {
     let parsedOfferList: SimplifyOffer[];
-    CustomConsole.SELECTED_FLOORS(
-      request.body.floor.value.gte,
-      request.body.floor.value.lte,
-    );
+    CustomConsole.SELECTED_FLOORS(request.body.floor.value.gte, request.body.floor.value.lte);
     CustomConsole.BLUE(`PAGE: [${request.body.page.value}]`);
     const responseData = await getResponse(request);
-    CustomConsole.IMPORTANT(
-      `Offers by current filter: [${responseData.offerCount}]`,
-    );
+    CustomConsole.IMPORTANT(`Offers by current filter: [${responseData.offerCount}]`);
 
-    if (
-      !responseData.offersSerialized ||
-      !responseData.offersSerialized.length
-    ) {
+    if (!responseData.offersSerialized || !responseData.offersSerialized.length) {
       request = updateFloors(request);
       continue;
     }
@@ -42,13 +34,12 @@ export async function getParsedDataPageByPage(
       parsedOfferList = await parseSerializedData(responseData.offersSerialized, globalState);
     }
 
-    await appendOrSaveFile(
-      getFileName({ request: request, startDate, isTemp: true }),
-      parsedOfferList,
-    ).catch((err: NodeJS.ErrnoException | null) => {
-      console.error(err);
-      throw new Error('file save FAILED');
-    });
+    await appendOrSaveFile(getFileName({ request: request, startDate, isTemp: true }), parsedOfferList).catch(
+      (err: NodeJS.ErrnoException | null) => {
+        console.error(err);
+        throw new Error('file save FAILED');
+      },
+    );
 
     request = nextPage(request);
   }
