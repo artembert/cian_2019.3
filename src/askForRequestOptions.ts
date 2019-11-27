@@ -8,7 +8,7 @@ export function askForRequestOptions(): Promise<TypeAndRoomChoice> {
       type: 'list',
       name: 'adType',
       message: 'Rent or sale?',
-      choices: ['rent', 'sale'],
+      choices: ['sale', 'rent'],
     },
     {
       type: 'list',
