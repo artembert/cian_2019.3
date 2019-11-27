@@ -4,6 +4,7 @@ import cloneDeep from 'clone-deep';
 import { MAX_FLOORS_NUMBER } from './configs/requestOptions';
 import { getResponse } from './getResponse';
 import CustomConsole from './CustomConsole';
+import { increaseFloorsNumber } from './utils-functions/increase-floors-number';
 
 export async function requestOffersByFloorNumber(
   originalRequest: CianRequest,
@@ -27,11 +28,4 @@ export async function requestOffersByFloorNumber(
     }
   }
   return offersInFloor;
-}
-
-function increaseFloorsNumber(request: CianRequest): CianRequest {
-  const updatedRequest = cloneDeep(request);
-  updatedRequest.body.floorn.value.gte += 1;
-  updatedRequest.body.floorn.value.lte += 1;
-  return updatedRequest;
 }
