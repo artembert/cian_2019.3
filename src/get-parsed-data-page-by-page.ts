@@ -27,11 +27,25 @@ export async function getParsedDataPageByPage(
     }
 
     if (responseData.offerCount > MAX_FILTERED_OFFERS_COUNT) {
-      CustomConsole.WARNING(`Need to iterate over floorNumbers`);
+      CustomConsole.IMPORTANT(`Iterate over floorNumbers`);
       const rawResponses = await requestOffersByFloorNumber(request, responseData.offerCount);
       parsedOfferList = await parseSerializedData(rawResponses, globalState);
+
+      await appendOrSaveFile(getFileName({ request: request, startDate, isTemp: true }), parsedOfferList).catch(
+        (err: NodeJS.ErrnoException | null) => {
+          console.error(err);
+          throw new Error('file save FAILED');
+        },
+      );
+      break;
     } else {
       parsedOfferList = await parseSerializedData(responseData.offersSerialized, globalState);
+      await appendOrSaveFile(getFileName({ request: request, startDate, isTemp: true }), parsedOfferList).catch(
+        (err: NodeJS.ErrnoException | null) => {
+          console.error(err);
+          throw new Error('file save FAILED');
+        },
+      );
     }
 
     await appendOrSaveFile(getFileName({ request: request, startDate, isTemp: true }), parsedOfferList).catch(
