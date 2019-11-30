@@ -8,6 +8,7 @@ import { CianRequest, Rent, Sale } from 'CianRequest';
 export const MAX_FLOOR: number = 50;
 export const MAX_FLOORS_NUMBER: number = 50;
 export const FLOOR_INTERVAL_STEP: number = 1;
+export const FLOORS_NUMBER_INTERVAL_STEP: number = 2;
 export const MAX_FILTERED_OFFERS_COUNT = 1400;
 
 export const defaultRequest: CianRequest = {

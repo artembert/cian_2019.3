@@ -1,7 +1,7 @@
 import { CianRequest } from 'CianRequest';
 import { SerializedOffer } from 'CianResponse';
 import cloneDeep from 'clone-deep';
-import { MAX_FLOORS_NUMBER } from './configs/requestOptions';
+import { FLOORS_NUMBER_INTERVAL_STEP, MAX_FLOORS_NUMBER } from './configs/requestOptions';
 import { getResponse } from './getResponse';
 import CustomConsole from './CustomConsole';
 import { increaseFloorsNumber } from './utils-functions/increase-floors-number';
@@ -15,7 +15,7 @@ export async function requestOffersByFloorNumber(
   const offersInFloor: SerializedOffer[] = [];
   let request = cloneDeep(originalRequest);
   request.body.floorn.value.gte = 1;
-  request.body.floorn.value.lte = 1;
+  request.body.floorn.value.lte = FLOORS_NUMBER_INTERVAL_STEP;
 
   while (offersInFloor.length <= estimatedOffersCount) {
     CustomConsole.DATA_LOADED(
