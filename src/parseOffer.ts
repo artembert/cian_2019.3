@@ -1,5 +1,6 @@
 import { Offer } from 'Offer';
 import { SimplifyOffer } from 'SimplifyOffer';
+import { DATE_NOW_TIMESTAMP } from './configs/glogal-config';
 
 export function parseOffer(offer: Offer): SimplifyOffer {
   return {
@@ -31,6 +32,7 @@ export function parseOffer(offer: Offer): SimplifyOffer {
         : '',
     description: offer.description,
     address: offer.geo ? offer.geo.userInput : '',
-    date: 'Required!',
+    date: offer.editDate,
+    download_date: DATE_NOW_TIMESTAMP,
   };
 }

@@ -13,4 +13,5 @@ export interface SimplifyOffer {
   description: any,
   address: any,
   date: any,
+  download_date: number,
 }
