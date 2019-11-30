@@ -30,32 +30,17 @@ export async function getParsedDataPageByPage(
       CustomConsole.IMPORTANT(`Iterate over floorNumbers`);
       const rawResponses = await requestOffersByFloorNumber(request, responseData.offerCount);
       parsedOfferList = await parseSerializedData(rawResponses, globalState);
-
-      await appendOrSaveFile(getFileName({ request: request, startDate, isTemp: true }), parsedOfferList).catch(
-        (err: NodeJS.ErrnoException | null) => {
-          console.error(err);
-          throw new Error('file save FAILED');
-        },
-      );
-      break;
+      request = updateFloors(request);
     } else {
       parsedOfferList = await parseSerializedData(responseData.offersSerialized, globalState);
-      await appendOrSaveFile(getFileName({ request: request, startDate, isTemp: true }), parsedOfferList).catch(
-        (err: NodeJS.ErrnoException | null) => {
-          console.error(err);
-          throw new Error('file save FAILED');
-        },
-      );
+      request = nextPage(request);
     }
-
     await appendOrSaveFile(getFileName({ request: request, startDate, isTemp: true }), parsedOfferList).catch(
       (err: NodeJS.ErrnoException | null) => {
         console.error(err);
         throw new Error('file save FAILED');
       },
     );
-
-    request = nextPage(request);
   }
 }
 
