@@ -2,6 +2,9 @@
   "name": "cian-api-v1-parser",
   "version": "1.0.0",
   "description": "📍 Get offers from spb.cian.ru/cian-api/site/v1/search-offers/",
+  "scripts": {
+    "start": "ts-node index.ts"
+  },
   "engines": {
     "node": ">= 10.16"
   },
