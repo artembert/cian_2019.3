@@ -1,10 +1,5 @@
 import { CianRequest, Rent, Sale } from 'CianRequest';
 
-/* region code:
-  2 - SPb
-  4593 - Moscow region
- */
-
 export const MAX_FLOOR: number = 50;
 export const MAX_FLOORS_NUMBER: number = 50;
 export const FLOOR_INTERVAL_STEP: number = 1;
@@ -46,5 +41,6 @@ export const rentOption: Rent = {
 
 export const RegionName = {
   2: `SPb`,
-  4593: `MoscowRegion`
+  4593: `MoscowRegion`,
+  4713: `Voronezh`,
 };
