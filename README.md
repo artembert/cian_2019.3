@@ -1,2 +1,2 @@
-## 📍 Cian API v1 Parser
+## 📍 Cian Parser
 Get offers rom spb.cian.ru/cian-api/site/v1/search-offers/
